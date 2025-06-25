@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: bus-booking-system
+    env: docker
+    dockerfilePath: ./Dockerfile
+    internalPort: 8080    # 👈 make this match Tomcat
