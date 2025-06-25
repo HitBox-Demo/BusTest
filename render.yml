@@ -1,7 +1,10 @@
+
+# render.yaml  (note the extension must be .yaml, not .yml)
 services:
   - type: web
-    name: bus-booking-system          # any slug-safe name
-    env: docker                       # tells Render to use Dockerfile
-    plan: free                        # or starter, standard, etc.
-    dockerfilePath: ./Dockerfile      # path relative to repo root
-    autoDeploy: true                  # re-deploy on every git push
+    name: bus-booking-system
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    internalPort: 8080      #  << add this line
+    autoDeploy: true
