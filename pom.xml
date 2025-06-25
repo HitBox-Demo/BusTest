@@ -3,26 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!--
+       Basic coordinates
+  -->
   <modelVersion>4.0.0</modelVersion>
-
-  <!-- Project coordinates -->
   <groupId>com.mycompany</groupId>
   <artifactId>Bus_Booking_System_Maven</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>Bus_Booking_System_Maven</name>
-
-  <!-- Global properties -->
+  <!-- 
+       Properties
+   -->
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <!-- Java language level -->
+    <maven.compiler.release>17</maven.compiler.release>
+    <!-- UTF-8 source files -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <!-- Dependencies -->
+  <!-- 
+       Dependencies
+   -->
   <dependencies>
-    <!-- MySQL 8 JDBC driver (bundled in WAR) -->
+    <!-- MySQL 8 JDBC driver (bundled inside WAR) -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -38,7 +42,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- JSTL tag library for JSPs -->
+    <!-- JSTL tag-library for JSPs -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
@@ -46,38 +50,32 @@
     </dependency>
   </dependencies>
 
-  <!-- Build plugins -->
+  <!-- 
+       Build plugins
+   -->
   <build>
-  <!-- ① Pin compiler plugin version and release level -->
-  <pluginManagement>
     <plugins>
+      <!-- ⚠  Pin compiler version *and* release level -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
+          <!-- The <release> tag guarantees Java 17 APIs like String.isBlank() -->
           <release>17</release>
         </configuration>
       </plugin>
+
+      <!-- WAR packaging -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+        <configuration>
+          <!-- You use @WebServlet annotations, so web.xml is optional -->
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
     </plugins>
-  </pluginManagement>
-
-  <!-- ② Still declare the plugin for the default lifecycle (can be empty) -->
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-compiler-plugin</artifactId>
-    </plugin>
-
-    <!-- WAR plugin unchanged -->
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-war-plugin</artifactId>
-      <version>3.4.0</version>
-      <configuration>
-        <failOnMissingWebXml>false</failOnMissingWebXml>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+  </build>
 </project>
