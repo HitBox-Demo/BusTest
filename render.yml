@@ -1,6 +1,7 @@
 services:
   - type: web
-    name: bus-booking-system
-    env: docker
-    dockerfilePath: ./Dockerfile
-    internalPort: 8080    # 👈 make this match Tomcat
+    name: bus-booking-system          # any slug-safe name
+    env: docker                       # tells Render to use Dockerfile
+    plan: free                        # or starter, standard, etc.
+    dockerfilePath: ./Dockerfile      # path relative to repo root
+    autoDeploy: true                  # re-deploy on every git push
