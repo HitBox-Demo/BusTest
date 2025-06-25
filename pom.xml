@@ -5,19 +5,24 @@
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Project coordinates -->
   <groupId>com.mycompany</groupId>
   <artifactId>Bus_Booking_System_Maven</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
 
+  <name>Bus_Booking_System_Maven</name>
+
+  <!-- Global properties -->
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
+  <!-- Dependencies -->
   <dependencies>
-    <!-- JDBC driver (bundled in WAR) -->
+    <!-- MySQL 8 JDBC driver (bundled in WAR) -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -25,7 +30,7 @@
       <scope>runtime</scope>
     </dependency>
 
-    <!-- Servlet API provided by Tomcat at runtime -->
+    <!-- Servlet 4.0 API (provided by Tomcat 9 at runtime) -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
@@ -33,7 +38,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- JSTL tag-library for JSPs -->
+    <!-- JSTL tag library for JSPs -->
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>jstl</artifactId>
@@ -41,13 +46,18 @@
     </dependency>
   </dependencies>
 
+  <!-- Build plugins -->
   <build>
     <plugins>
-      <!-- Compiler -->
+      <!-- Java compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
+        <configuration>
+          <!-- Use Java 17 language level & APIs -->
+          <release>17</release>
+        </configuration>
       </plugin>
 
       <!-- WAR packaging -->
@@ -56,6 +66,7 @@
         <artifactId>maven-war-plugin</artifactId>
         <version>3.4.0</version>
         <configuration>
+          <!-- No web.xml needed because you use @WebServlet -->
           <failOnMissingWebXml>false</failOnMissingWebXml>
         </configuration>
       </plugin>
