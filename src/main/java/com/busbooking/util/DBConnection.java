@@ -15,11 +15,11 @@ public class DBConnection {
     }
 
     public static Connection getConnection() throws SQLException {
-    String host = System.getenv("DB_HOST");
-    String port = System.getenv("DB_PORT");
-    String db = System.getenv("DB_NAME");
-    String user = System.getenv("DB_USER");
-    String pass = System.getenv("DB_PASSWORD");
+    String host = System.getenv("DB_HOST");      // e.g. containers-us-west-123.railway.app
+    String port = System.getenv("DB_PORT");      // 3306
+    String db   = System.getenv("DB_NAME");      // railway
+    String user = System.getenv("DB_USER");      // root
+    String pass = System.getenv("DB_PASSWORD");  // ********
 
     String url = "jdbc:mysql://" + host + ":" + port + "/" + db +
                  "?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
