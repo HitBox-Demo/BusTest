@@ -48,28 +48,36 @@
 
   <!-- Build plugins -->
   <build>
+  <!-- ① Pin compiler plugin version and release level -->
+  <pluginManagement>
     <plugins>
-      <!-- Java compiler -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.11.0</version>
         <configuration>
-          <!-- Use Java 17 language level & APIs -->
           <release>17</release>
         </configuration>
       </plugin>
-
-      <!-- WAR packaging -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.4.0</version>
-        <configuration>
-          <!-- No web.xml needed because you use @WebServlet -->
-          <failOnMissingWebXml>false</failOnMissingWebXml>
-        </configuration>
-      </plugin>
     </plugins>
-  </build>
+  </pluginManagement>
+
+  <!-- ② Still declare the plugin for the default lifecycle (can be empty) -->
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+    </plugin>
+
+    <!-- WAR plugin unchanged -->
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-war-plugin</artifactId>
+      <version>3.4.0</version>
+      <configuration>
+        <failOnMissingWebXml>false</failOnMissingWebXml>
+      </configuration>
+    </plugin>
+  </plugins>
+</build>
 </project>
